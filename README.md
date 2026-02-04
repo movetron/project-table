@@ -1,4 +1,4 @@
-Проект находится в разработке. Суть проекта - панель управления для автоматизации и одновременного контроля своих Steam аккаунтов. В будущем будут применены backend технологии Node.js, Nest.js и подключены БД PostgreSQL и Swagger
+Проект находится в разработке. Суть проекта - панель управления для автоматизации и одновременного контроля своих Steam аккаунтов. В будущем будут применены Next.js, backend технологии Node.js, Nest.js и подключены БД PostgreSQL и Swagger
 
 Стек: React, React Hooks, TypeScript, cutsom Hook, TailwindCSS, Lucide React, Skeleton Loading, ErrorBoundary, Vite
 
