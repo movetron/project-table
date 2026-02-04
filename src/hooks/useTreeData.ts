@@ -14,7 +14,15 @@ export const useTreeData = (rawData: RawDataItem[]) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const initialTree = useMemo(() => buildTree(rawData), [rawData]);
+  const normalizedData = useMemo<RawDataItem[]>(() => {
+    return rawData.map((item) => ({
+      ...item,
+      name: item.name ?? '—',
+      balance: item.balance ?? '$0.00',
+    }));
+  }, [rawData]);
+
+  const initialTree = useMemo(() => buildTree(normalizedData), [normalizedData]);
 
   const processedTree = useMemo(() => {
     if (isLoading) return [];

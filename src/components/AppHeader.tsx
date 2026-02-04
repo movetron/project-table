@@ -7,37 +7,68 @@ export const AppHeader = ({
   onReset,
   sortsCount,
 }: any) => (
-  <header className="sticky top-0 z-30 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-slate-50/80 backdrop-blur-md py-4">
-    <div>
-      <h1 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
-        <Layers className="text-blue-600" /> Работа с таблицей аккаунтов
-      </h1>
-      <p className="text-sm text-slate-500 mt-1">
-        {isLoading ? 'Загрузка данных...' : 'Просмотр и сортировка данных'}
-      </p>
+  <header className="sticky top-0 z-30 flex flex-col md:flex-row md:items-center justify-between gap-4 bg-[#1b2838]/95 backdrop-blur-md py-6 border-b border-[#2a475e] shadow-2xl">
+    <div className="flex items-center gap-4">
+      <div className="p-3 bg-gradient-to-br from-[#66c0f4] to-[#3d6c8d] rounded-lg shadow-[0_0_20px_rgba(102,192,244,0.2)]">
+        <Layers className="text-[#171a21]" size={28} />
+      </div>
+      <div>
+        <h1 className="text-2xl font-black uppercase tracking-[0.15em] text-white italic leading-none">
+          Steam <span className="text-[#66c0f4]">Accounts</span>
+        </h1>
+        <p className="text-[11px] font-bold uppercase tracking-widest text-[#8f98a0] mt-1 flex items-center gap-2">
+          {isLoading ? (
+            <>
+              <Activity size={12} className="animate-spin text-[#66c0f4]" />
+              Синхронизация данных...
+            </>
+          ) : (
+            'Панель управления аккаунтами'
+          )}
+        </p>
+      </div>
     </div>
-    <div className="flex items-center gap-3 bg-white p-2 rounded-xl shadow-sm border border-gray-200">
-      {isLoading && <Activity className="animate-spin text-blue-500 mr-2" size={16} />}
-      <div className="flex items-center gap-2 border-r border-gray-100 pr-3">
-        <label className="flex items-center gap-2 cursor-pointer px-2 py-1.5 rounded-md hover:bg-gray-50 transition-colors">
-          <input
-            type="checkbox"
-            checked={showActiveOnly}
-            onChange={(e) => setShowActiveOnly(e.target.checked)}
-            disabled={isLoading}
-            className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
-          />
-          <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
+
+    <div className="flex items-center gap-3 bg-[#171a21]/80 p-1.5 rounded-sm border border-[#2a475e]">
+      <div className="flex items-center gap-2 border-r border-[#2a475e] pr-4 pl-2">
+        <label className="flex items-center gap-3 cursor-pointer group">
+          <div className="relative flex items-center">
+            <input
+              type="checkbox"
+              checked={showActiveOnly}
+              onChange={(e) => setShowActiveOnly(e.target.checked)}
+              disabled={isLoading}
+              className="peer appearance-none w-4 h-4 bg-[#1b2838] border border-[#2a475e] rounded-sm checked:bg-[#66c0f4] checked:border-[#66c0f4] transition-all cursor-pointer disabled:opacity-50"
+            />
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-[#171a21] opacity-0 peer-checked:opacity-100 transition-opacity">
+              <svg
+                className="w-3 h-3"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="4"
+              >
+                <path d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+          </div>
+          <span className="text-[10px] font-black uppercase tracking-wider text-[#c6d4df] group-hover:text-white transition-colors">
             Только активные
           </span>
         </label>
       </div>
+
       <button
         onClick={onReset}
         disabled={sortsCount === 0 || isLoading}
-        className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${sortsCount > 0 && !isLoading ? 'text-red-600 hover:bg-red-50' : 'text-gray-300 cursor-not-allowed'}`}
+        className={`flex items-center gap-2 px-4 py-2 rounded-sm text-[10px] font-black uppercase tracking-widest transition-all ${
+          sortsCount > 0 && !isLoading
+            ? 'bg-[#cd5444] text-white hover:brightness-125 shadow-[0_0_10px_rgba(205,84,68,0.3)]'
+            : 'bg-[#2a475e]/30 text-[#4e5a63] cursor-not-allowed opacity-50'
+        }`}
       >
-        <XCircle size={16} /> Сбросить всё
+        <XCircle size={14} />
+        Сбросить параметры
       </button>
     </div>
   </header>

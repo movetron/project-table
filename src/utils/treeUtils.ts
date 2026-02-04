@@ -1,6 +1,8 @@
 import type { RawDataItem, TreeNode } from '../types';
 
 export const parseCurrency = (value: string): number => {
+  if (!value) return 0;
+
   return parseFloat(value.replace(/[$,]/g, ''));
 };
 
